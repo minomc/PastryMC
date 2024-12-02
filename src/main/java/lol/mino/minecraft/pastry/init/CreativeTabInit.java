@@ -20,9 +20,14 @@ import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = PastryMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class CreativeTabInit {
+    public enum PastryType {
+        FRIED,
+        BAKED
+    }
+
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, PastryMod.MOD_ID);
 
-
+    // Pastry Tab
     public static final List<Supplier<? extends ItemLike>> PASTRY_TAB_ITEMS = new ArrayList<>();
     public static final RegistryObject<CreativeModeTab> PASTRY_TAB = TABS.register("pastry_tab",
             () -> CreativeModeTab.builder()
@@ -32,23 +37,45 @@ public class CreativeTabInit {
                             PASTRY_TAB_ITEMS.forEach(itemLike -> output.accept(itemLike.get())))
                     .build()
     );
-    public static <T extends Item> RegistryObject<T> addToPastryTab(RegistryObject<T> itemLike) {
-        PASTRY_TAB_ITEMS.add(itemLike);
-        return itemLike;
-    }
 
-
-    public static final List<Supplier<? extends ItemLike>> DOUGH_TAB_ITEMS = new ArrayList<>();
-    public static final RegistryObject<CreativeModeTab> DOUGH_TAB = TABS.register("dough_tab",
+    // Fried Tab
+    public static final List<Supplier<? extends ItemLike>> FRIED_TAB_ITEMS = new ArrayList<>();
+    public static final RegistryObject<CreativeModeTab> FRIED_TAB = TABS.register("fried_tab",
             () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup.dough_tab"))
+                    .title(Component.translatable("itemGroup.fried_tab"))
                     .icon(ItemInit.DONUT_ITEM.get()::getDefaultInstance)
                     .displayItems((displayParams, output) ->
-                            DOUGH_TAB_ITEMS.forEach(itemLike -> output.accept(itemLike.get())))
+                            FRIED_TAB_ITEMS.forEach(itemLike -> output.accept(itemLike.get())))
                     .build()
     );
-    public static <T extends Item> RegistryObject<T> addToDoughTab(RegistryObject<T> itemLike) {
-        DOUGH_TAB_ITEMS.add(itemLike);
+
+    // Baked Tab
+    public static final List<Supplier<? extends ItemLike>> BAKED_TAB_ITEMS = new ArrayList<>();
+    public static final RegistryObject<CreativeModeTab> BAKED_TAB = TABS.register("baked_tab",
+            () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.baked_tab"))
+                    .icon(Items.DIAMOND::getDefaultInstance)
+                    .displayItems((displayParams, output) ->
+                            BAKED_TAB_ITEMS.forEach(itemLike -> output.accept(itemLike.get())))
+                    .build()
+    );
+
+    /*
+     * Used to add an item to a specific tab in the creative menu using the PastryType enumerator
+     */
+    public static <T extends Item> RegistryObject<T> addToTab(PastryType pastryType, RegistryObject<T> itemLike) {
+        switch(pastryType) {
+            case FRIED:
+                FRIED_TAB_ITEMS.add(itemLike);
+                break;
+            case BAKED:
+                BAKED_TAB_ITEMS.add(itemLike);
+                break;
+            default:
+                PASTRY_TAB_ITEMS.add(itemLike);
+                break;
+        }
+
         return itemLike;
     }
 
@@ -58,6 +85,10 @@ public class CreativeTabInit {
         // Add a crossbow to the pastry tab
         if (event.getTab() == PASTRY_TAB.get()) {
             event.accept(Items.CROSSBOW);
+        }
+        // Add a diamond to the Baked Pastries tab
+        if (event.getTab() == BAKED_TAB.get()) {
+            event.accept(Items.DIAMOND);
         }
     }
 

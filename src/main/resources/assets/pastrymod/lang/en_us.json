@@ -1,5 +1,6 @@
 {
-  "item.pastrymod.donut": "Donut",
   "itemGroup.pastry_tab": "Pastry",
-  "itemGroup.dough_tab": "Dough"
+  "itemGroup.fried_tab": "Fried Pastries",
+  "itemGroup.baked_tab": "Baked Pastries",
+  "item.pastrymod.donut": "Donut"
 }
