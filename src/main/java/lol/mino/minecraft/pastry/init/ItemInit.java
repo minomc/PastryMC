@@ -26,4 +26,15 @@ public class ItemInit {
                             .build())
                     .rarity(Rarity.COMMON)
     )));
+
+    public static final RegistryObject<Item> MACARON_ITEM = addToTab(PastryType.BAKED, ITEMS.register("macaron",
+            () -> new Item(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(2)
+                            .saturationMod(0.2f)
+                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 2), 1f)
+                            .build())
+                    .rarity(Rarity.COMMON)
+            )));
 }

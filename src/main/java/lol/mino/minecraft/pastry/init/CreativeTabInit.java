@@ -54,7 +54,7 @@ public class CreativeTabInit {
     public static final RegistryObject<CreativeModeTab> BAKED_TAB = TABS.register("baked_tab",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.baked_tab"))
-                    .icon(Items.DIAMOND::getDefaultInstance)
+                    .icon(ItemInit.MACARON_ITEM.get()::getDefaultInstance)
                     .displayItems((displayParams, output) ->
                             BAKED_TAB_ITEMS.forEach(itemLike -> output.accept(itemLike.get())))
                     .build()
