@@ -33,7 +33,7 @@ public class ItemInit {
                     .food(new FoodProperties.Builder()
                             .nutrition(2)
                             .saturationMod(0.2f)
-                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 2), 1f)
+                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 600, 1), 1f)
                             .build())
                     .rarity(Rarity.COMMON)
             )));
