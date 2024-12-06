@@ -86,10 +86,6 @@ public class CreativeTabInit {
         if (event.getTab() == PASTRY_TAB.get()) {
             event.accept(Items.CROSSBOW);
         }
-        // Add a diamond to the Baked Pastries tab
-        if (event.getTab() == BAKED_TAB.get()) {
-            event.accept(Items.DIAMOND);
-        }
     }
 
 }
