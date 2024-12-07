@@ -54,7 +54,7 @@ public class CreativeTabInit {
     public static final RegistryObject<CreativeModeTab> BAKED_TAB = TABS.register("baked_tab",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.baked_tab"))
-                    .icon(Items.DIAMOND::getDefaultInstance)
+                    .icon(ItemInit.MACARON_ITEM.get()::getDefaultInstance)
                     .displayItems((displayParams, output) ->
                             BAKED_TAB_ITEMS.forEach(itemLike -> output.accept(itemLike.get())))
                     .build()
@@ -85,10 +85,6 @@ public class CreativeTabInit {
         // Add a crossbow to the pastry tab
         if (event.getTab() == PASTRY_TAB.get()) {
             event.accept(Items.CROSSBOW);
-        }
-        // Add a diamond to the Baked Pastries tab
-        if (event.getTab() == BAKED_TAB.get()) {
-            event.accept(Items.DIAMOND);
         }
     }
 

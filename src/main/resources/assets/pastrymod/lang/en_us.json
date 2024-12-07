@@ -2,5 +2,6 @@
   "itemGroup.pastry_tab": "Pastry",
   "itemGroup.fried_tab": "Fried Pastries",
   "itemGroup.baked_tab": "Baked Pastries",
-  "item.pastrymod.donut": "Donut"
+  "item.pastrymod.donut": "Donut",
+  "item.pastrymod.macaron": "Macaron"
 }
